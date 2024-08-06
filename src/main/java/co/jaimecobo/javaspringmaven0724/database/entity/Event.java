@@ -21,7 +21,7 @@ public class Event {
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "organizer", nullable = false)
+    @JoinColumn(name = "organizer_id", nullable = false)
     private User organizer;
 
     @ToString.Exclude
@@ -35,23 +35,36 @@ public class Event {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "organizer", nullable = false, insertable = false, updatable = false)
+//    @Column(name = "organizer_id", nullable = false, insertable = false, updatable = false)
+    @Column(name = "organizer_id", insertable = false, updatable = false)
     private Integer organizerId;
 
-    @Column(name = "city_id", nullable = false, insertable = false, updatable = false)
+//    @Column(name = "city_id", nullable = false, insertable = false, updatable = false)
+    @Column(name = "city_id", insertable=false, updatable=false)
     private Integer cityId;
 
-    @Column(name = "starting_date", nullable = false)
-    private Date startingDate;
 
+//    @Column(name = "starting_date", nullable = false, columnDefinition = "timestamp default current_timestamp")
+//    @Column(name = "starting_date", insertable=false, updatable=false, columnDefinition = "timestamp default current_timestamp")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date startingDate;
+    @Column(name = "starting_date", nullable = false)
+    private String startingDate;
+
+
+    //    @Column(name = "ending_date", nullable = false, columnDefinition = "timestamp default current_timestamp")
+//    @Column(name = "starting_date", insertable=false, updatable=false, columnDefinition = "timestamp default current_timestamp")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date endingDate;
     @Column(name = "ending_date", nullable = false)
-    private Date ending_date;
+    private String endingDate;
+
 
     @Column(name = "event_image_url", nullable = false)
     private String eventImageUrl;
 
     @Column(name = "event_web_url", nullable = false)
-    private String event_web_url;
+    private String eventWebUrl;
 
     @Column(name = "created_at", updatable = false,  nullable = false, columnDefinition = "timestamp default current_timestamp")
     @Temporal(TemporalType.TIMESTAMP)
