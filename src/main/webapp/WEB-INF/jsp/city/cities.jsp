@@ -28,7 +28,7 @@
             <div class="col-8 text-center">
                 <form action="/city/cities">
                     <div class="mb-3">
-                        <label for="name" class="form-label"><h4>City Search</h4></label>
+                        <label for="name" class="form-label"><h4>Search for city</h4></label>
                         <input type="text" value="${city}" class="form-control" id="name" name="name"
                                placeholder="Enter city name"/>
                     </div>
