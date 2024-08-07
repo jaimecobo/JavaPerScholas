@@ -23,25 +23,22 @@ public class Event {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "organizer_id", nullable = false)
     private User organizer;
+    @Column(name = "organizer_id", nullable = false, insertable = false, updatable = false)
+    private Integer organizerId;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
+    @Column(name = "city_id", nullable = false, insertable = false, updatable = false)
+    private Integer cityId;
+
 
     @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "description", nullable = false)
     private String description;
-
-//    @Column(name = "organizer_id", nullable = false, insertable = false, updatable = false)
-    @Column(name = "organizer_id", insertable = false, updatable = false)
-    private Integer organizerId;
-
-//    @Column(name = "city_id", nullable = false, insertable = false, updatable = false)
-    @Column(name = "city_id", insertable=false, updatable=false)
-    private Integer cityId;
 
 
 //    @Column(name = "starting_date", nullable = false, columnDefinition = "timestamp default current_timestamp")
