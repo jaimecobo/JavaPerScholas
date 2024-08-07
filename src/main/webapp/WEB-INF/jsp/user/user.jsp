@@ -33,5 +33,37 @@
     <tr><td></td><td><a href="${pageContext.request.contextPath}/user/edit-user?userId=${userKey.id}">edit by @RequestParam</a></td></tr>
 </table>
 
+<section>
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-12">
+                <%--                <h2 class="text-center">Order details</h2>--%>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <tr class="text-center" style="background-color:lightcyan">
+                        <th>Id</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Country</th>
+                        <th>Edit</th>
+                    </tr>
+                    <c:forEach items="${listOfVisitedCitiesKey}" var="visitedCity">
+                        <tr class="text-center">
+                            <td><a href="/city/edit-city?cityId=${visitedCity.id}">${visitedCity.id}</a></td>
+                            <td><a href="/city/city/${visitedCity.id}">${visitedCity.city}</a></td>
+                            <td>${visitedCity.state}</td>
+                            <td>${visitedCity.country}</td>
+                            <td><a href="/city/edit-city?cityId=${visitedCity.id}">edit</a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <jsp:include page="../include/footer.jsp"/>
