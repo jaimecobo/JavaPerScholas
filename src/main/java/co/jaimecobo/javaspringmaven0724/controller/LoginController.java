@@ -12,9 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/account")
 public class LoginController {
 
+
     @GetMapping("/loginPageUrl")
     public ModelAndView loginPage(){
-        ModelAndView response = new ModelAndView("auth/login");
+            ModelAndView response = new ModelAndView("auth/login");
         return response;
     }
 
