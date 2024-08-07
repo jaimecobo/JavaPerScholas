@@ -32,20 +32,17 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/#"></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/employee/create-employee" id="navbarDropdownEmployees" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Employee
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/employee/employees">Search employee</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/employee/create-employee">Create employee</a></li>
+
+<%--                <li class="nav-item dropdown">--%>
+<%--                    <a class="nav-link dropdown-toggle" href="/employee/create-employee" id="navbarDropdownEmployees" role="button" data-bs-toggle="dropdown" aria-expanded="false">--%>
+<%--                        Employee--%>
+<%--                    </a>--%>
+<%--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">--%>
+<%--                        <li><a class="dropdown-item" href="/employee/employees">Search employee</a></li>--%>
 <%--                        <li><hr class="dropdown-divider"></li>--%>
-<%--                        <li><a class="dropdown-item" href="/option2/create-option2">Create option2</a></li>--%>
-                        <%--                        <li><hr class="dropdown-divider"></li>--%>
-                        <%--                        <li><a class="dropdown-item" href="/option2/edit-option2">Edit option2</a></li>--%>
-                    </ul>
-                </li>
+<%--                        <li><a class="dropdown-item" href="/employee/create-employee">Create employee</a></li>--%>
+<%--                    </ul>--%>
+<%--                </li>--%>
 
 
                 <li class="nav-item dropdown">
@@ -64,7 +61,7 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/city/create-city" id="navbarDropdownCitiess" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="/city/create-city" id="navbarDropdownCities" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         City
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -79,31 +76,21 @@
                 </li>
 
 
-<%--                <li class="nav-item dropdown">--%>
-<%--                    <a class="nav-link dropdown-toggle" href="/option4/option4" id="navbarDropdownOrders" role="button" data-bs-toggle="dropdown" aria-expanded="false">--%>
-<%--                        Option4--%>
-<%--                    </a>--%>
-<%--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">--%>
-<%--                        <li><a class="dropdown-item" href="/option4/option4">Log out</a></li>--%>
-<%--                        <li><hr class="dropdown-divider"></li>--%>
-<%--                        <li><a class="dropdown-item" href="/option4/option4Details">All option4</a></li>--%>
-<%--                        <li><hr class="dropdown-divider"></li>--%>
-<%--                        <li><a class="dropdown-item" href="/option4/option4Detailsbyid">option4 details + values third table + calculated value</a></li>--%>
-<%--                    </ul>--%>
-<%--                </li>--%>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/event/create-event" id="navbarDropdownEvents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Event
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/event/events">Search event</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/event/create-event">Create event</a></li>
+                        <%--                        <li><hr class="dropdown-divider"></li>--%>
+                        <%--                        <li><a class="dropdown-item" href="/option3/create-option3">create option3</a></li>--%>
+                        <%--                        <li><hr class="dropdown-divider"></li>--%>
+                        <%--                        <li><a class="dropdown-item" href="/option3/edit-option3">Edit option3</a></li>--%>
+                    </ul>
+                </li>
 
-
-
-<%--                <sec:authorize access="!isAuthenticated()">--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="/account/loginPageUrl">Login</a>--%>
-<%--                    </li>--%>
-<%--                </sec:authorize>--%>
-<%--                <sec:authorize access="isAuthenticated()">--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="/account/logout">Logout</a>--%>
-<%--                    </li>--%>
-<%--                </sec:authorize>--%>
 
 
                 <sec:authorize access="!isAuthenticated()">
@@ -126,19 +113,6 @@
                     </li>
                 </sec:authorize>
 
-                <!-- Display login and register links if the user is not authenticated -->
-<%--                <li sec:authorize="!isAuthenticated()" class="nav-item">--%>
-<%--                    <a class="btn btn-outline-primary" href="/account/loginPageUrl">Login</a>--%>
-<%--                </li>--%>
-<%--                <li sec:authorize="!isAuthenticated()" class="nav-item">--%>
-<%--                    <a class="btn btn-outline-success" th:href="@{/create-employee}">Register</a>--%>
-<%--                </li>--%>
-                <!-- Display logout link if the user is authenticated -->
-<%--                <li sec:authorize="isAuthenticated()" class="nav-item">--%>
-<%--                    <form action="/account/logout" method="post">--%>
-<%--                        <input type="submit" value="Logout" class="btn btn-outline-danger"/>--%>
-<%--                    </form>--%>
-<%--                </li>--%>
 
             </ul>
 
@@ -149,9 +123,6 @@
                        placeholder="Enter option5 detail id"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-<%--            <li class="nav-item">--%>
-<%--                <a class="nav-link" href="/login/logout">Log out</a>--%>
-<%--            </li>--%>
 
         </div>
     </div>
