@@ -5,11 +5,67 @@
   Time: 5:48 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+
+<style>
+    .center-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: #eee;
+        border: 1px solid #ddd;
+        box-shadow: inset 0 0 0 rgba(0,0,0,.25);
+        width: 30px;
+        height: 20px;
+        outline: none;
+    }
+
+    input[type="checkbox"]:checked {
+        background-color: #d9edf7;
+        border: 1px solid #bce8f1;
+        box-shadow: inset 0 0 0 rgba(0,0,0,.25);
+    }
+
+
+</style>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <jsp:include page="../include/header.jsp" />
 
+
+
 <section style="background-color:lightblue">
-    <h1 class="page-title text-center">City details</h1>
+    <h1 class="page-title text-center">${cityKey.name} ${cityKey.stateProvinceDepartmentTerritory} city details</h1>
+</section>
+
+<section class="center-container">
+    <div class="form-check form-switch">
+        <sec:authorize access="isAuthenticated()">
+            <form id="formVisitedOrNot">
+                <input class="form-check-input" type="checkbox" id="cityVisited" name="visitedCity" onchange="updateStatus()"
+                   <c:if test="${visitedCityKey.cityVisited==1}">checked</c:if>
+                />
+                <label class="form-check-label" id="labelVisitedOrNot" for="cityVisited">
+<%--                    <c:choose>--%>
+<%--                        <c:when test="${visitedCityKey.cityVisited==1}">--%>
+<%--                            Visited--%>
+<%--                        </c:when>--%>
+<%--                        <c:otherwise>--%>
+<%--                            Not visited--%>
+<%--                        </c:otherwise>--%>
+<%--                    </c:choose>--%>
+                </label>
+                <input type="hidden" id="statusField" name="status" class="form-control"/>
+            </form>
+        </sec:authorize>
+    </div>
 </section>
 
 <table class="table table-striped">
@@ -29,3 +85,52 @@
 </table>
 
 <jsp:include page="../include/footer.jsp" />
+
+
+<%--<script src="../../../resources/static/script.js"></script>--%>
+<script>
+
+    function updateStatus() {
+        var checkbox = document.getElementById('cityVisited');
+        var statusField = checkbox.checked ? 1 : 0;
+        // var visitedOrNot = "Not visited";
+        // if(statusField === 1){
+        //     visitedOrNot = "Visited";
+        // }else{visitedOrNot = "Not visited"}
+
+        const label = document.getElementById('labelVisitedOrNot');
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                label.textContent = 'Visited';
+                console.log("Visited")
+            } else {
+                label.textContent = 'Not visited';
+            }
+        });
+
+        console.log("checkbox.checked: " + checkbox.checked);
+        console.log("statusField: " + statusField);
+
+        // Prevent the form from being submitted normally
+        event.preventDefault();
+
+        // Use Fetch API to send the data asynchronously
+        fetch(`/visitedcity/SaveAsVisitedCity?status=`+statusField+`&cityId=${cityKey.id}`, {})
+            .then(data => console.log('success'))
+            .catch(error => console.error('Error:', error));
+    }
+
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const checkbox = document.getElementById('visitedCity');
+    //     const label = document.querySelector('label[for="visitedCity"]');
+    //     checkbox.addEventListener('change', function() {
+    //         if (this.checked) {
+    //             label.textContent = 'Visited';
+    //             console.log("Visited")
+    //         } else {
+    //             label.textContent = 'Not visited';
+    //         }
+    //     });
+    // });
+
+</script>
