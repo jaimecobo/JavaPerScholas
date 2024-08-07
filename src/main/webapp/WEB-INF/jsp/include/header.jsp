@@ -65,7 +65,9 @@
                         City
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/city/cities">Search city</a></li>
+                        <li><a class="dropdown-item" href="/city/searchcity">Search city</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/city/allcities">All cities</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/city/create-city">Create city</a></li>
 <%--                        <li><hr class="dropdown-divider"></li>--%>
@@ -116,13 +118,14 @@
 
             </ul>
 
-            <form class="d-flex" action="/option5/option5Detailsbyid">
-                <input class="form-control me-2" type="search" placeholder="Search option5 by id" aria-label="Search"
-                       value="${option5Id}" id="option5Id"
-                       name="orderId"
-                       placeholder="Enter option5 detail id"/>
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+<%--            <form class="d-flex" action="/option5/option5Detailsbyid">--%>
+<%--                <input class="form-control me-2" type="search" placeholder="Search option5 by id" aria-label="Search"--%>
+<%--                       value="${option5Id}" id="option5Id"--%>
+<%--                       name="orderId"--%>
+<%--                       placeholder="Enter option5 detail id"/>--%>
+<%--                <button class="btn btn-outline-success" type="submit">Search</button>--%>
+<%--            </form>--%>
+
 
         </div>
     </div>
