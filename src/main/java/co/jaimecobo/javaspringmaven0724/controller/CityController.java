@@ -3,10 +3,13 @@ package co.jaimecobo.javaspringmaven0724.controller;
 import co.jaimecobo.javaspringmaven0724.database.dao.CityDAO;
 import co.jaimecobo.javaspringmaven0724.database.dao.EmployeeDAO;
 import co.jaimecobo.javaspringmaven0724.database.dao.UserDAO;
+import co.jaimecobo.javaspringmaven0724.database.dao.VisitedCityDAO;
 import co.jaimecobo.javaspringmaven0724.database.entity.City;
 import co.jaimecobo.javaspringmaven0724.database.entity.Employee;
 import co.jaimecobo.javaspringmaven0724.database.entity.User;
+import co.jaimecobo.javaspringmaven0724.database.entity.VisitedCity;
 import co.jaimecobo.javaspringmaven0724.form.CreateCityFormBean;
+import co.jaimecobo.javaspringmaven0724.security.AuthenticatedUserUtilities;
 import co.jaimecobo.javaspringmaven0724.service.CityService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -29,18 +32,34 @@ public class CityController {
     private CityDAO cityDAO;
 
     @Autowired
-    private CityService cityService;
-
-//    @Autowired
-//    private UserDAO userDAO;
+    private VisitedCityDAO visitedCityDAO;
 
     @Autowired
-    private EmployeeDAO employeeDAO;
+    private CityService cityService;
+
+    @Autowired
+    private UserDAO userDAO;
 
 
-    @GetMapping("/cities")
+    @Autowired
+    private AuthenticatedUserUtilities authenticatedUserUtilities;
+
+//    @Autowired
+//    private EmployeeDAO employeeDAO;
+
+
+    @GetMapping("/allcities")
+    public ModelAndView allcities() {
+        ModelAndView response = new ModelAndView("city/allcities");
+//        response.addObject("city", name);
+        List<City> cityList = cityDAO.findAll();
+        response.addObject("cities", cityList);
+        return response;
+    }
+
+    @GetMapping("/searchcity")
     public ModelAndView searchCity(@RequestParam(required = false) String name) {
-        ModelAndView response = new ModelAndView("city/cities");
+        ModelAndView response = new ModelAndView("city/searchcity");
         response.addObject("city", name);
 
         List<City> cityList = cityDAO.findByNameIgnoreCase(name);
@@ -55,10 +74,13 @@ public class CityController {
         log.debug("The user has selected a city with id = " + id);
         City city = cityDAO.findById(id);
         response.addObject("cityKey", city);
-//        User user = userDAO.findById(city.getLastEditorUser());
-//        response.addObject("userKey", user);
-        Employee user = employeeDAO.findById(city.getLastEditorUser());
+        User user = userDAO.findById(city.getLastEditorUser());
         response.addObject("userKey", user);
+        VisitedCity visitedCity = visitedCityDAO.findByUserIdAndCityId(authenticatedUserUtilities.getCurrentUser().getId(), id);
+        response.addObject("visitedCityKey", visitedCity);
+
+//        Employee user = employeeDAO.findById(city.getLastEditorUser());
+//        response.addObject("userKey", user);
 
         return response;
     }
