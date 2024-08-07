@@ -52,18 +52,6 @@ public class UserController {
     private LikeDAO likeDAO;
 
 
-    private void loadDropdowns(ModelAndView response, Integer id) {
-        List<Event> organizedEventsList = eventDAO.findByOrganizerId(id);
-        response.addObject("organizedEventsKey", organizedEventsList);
-
-//        List<Employee> reportsToEmployees = employeeDAO.findAll();
-//        response.addObject("listOfEmployeesToReportTo", reportsToEmployees);
-//
-//        List<Office> officesList = officeDAO.findAllOrderedByCity();
-//        response.addObject("listOfOffices", officesList);
-    }
-
-
     @GetMapping("/users")
     public ModelAndView searchUser(@RequestParam(required = false) String firstName) {
         ModelAndView response = new ModelAndView("user/users");
@@ -170,11 +158,11 @@ public class UserController {
         }
         else{
             // This line was creating the new employee and redirecting to their new create employee details page
-//            response.setViewName("redirect:/employee/employee/" + employeeService.createEmployee(form).getId());
+            response.setViewName("redirect:/user/user/" + userService.createUser(form).getId());
 
             // These to lines instead of the line above, is creating the new employee and logging in the employee automatically
-            userService.createUser(form);
-            authenticatedUserUtilities.manualAuthentication(session, form.getEmail(), form.getPassword());
+//            userService.createUser(form);
+//            authenticatedUserUtilities.manualAuthentication(session, form.getEmail(), form.getPassword());
         }
         return response;
 
