@@ -25,7 +25,7 @@
             <div class="col-8 text-center">
                 <form action="/user/users">
                     <div class="mb-3">
-                        <label for="user" class="form-label"><h4>User Search</h4></label>
+                        <label for="firstName" class="form-label"><h4>User Search</h4></label>
                         <input type="text" value="${firstName}" class="form-control" id="firstName" name="firstName"
                                placeholder="Enter user first name"/>
                     </div>
