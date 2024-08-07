@@ -1,6 +1,7 @@
 package co.jaimecobo.javaspringmaven0724.controller;
 
 import co.jaimecobo.javaspringmaven0724.security.AuthenticatedEmployeeUtilities;
+import co.jaimecobo.javaspringmaven0724.security.AuthenticatedUserUtilities;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -19,8 +20,11 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 @ControllerAdvice
 public class ErrorController {
 
+//    @Autowired
+//    private AuthenticatedEmployeeUtilities authenticatedEmployeeUtilities;
+
     @Autowired
-    private AuthenticatedEmployeeUtilities authenticatedEmployeeUtilities;
+    private AuthenticatedUserUtilities authenticatedUserUtilities;
 
     // this is optional ... im just showing you some things .. this is a catch all bucket for 404 errors
     // I am using this in seriesreminder because I need to do additional processing for a 404 page
@@ -44,12 +48,15 @@ public class ErrorController {
         ModelAndView response = new ModelAndView("error/404");
         response.setStatus(HttpStatus.NOT_FOUND);
 
-//        if (authenticatedUserUtilities.isAuthenticated()) {
-        if (authenticatedEmployeeUtilities.isAuthenticated()) {
-            log.warn("Employee : " + authenticatedEmployeeUtilities.getCurrentUsername()
+        if (authenticatedUserUtilities.isAuthenticated()) {
+//        if (authenticatedEmployeeUtilities.isAuthenticated()) {
+//            log.warn("Employee : " + authenticatedEmployeeUtilities.getCurrentUsername()
+            log.warn("Employee : " + authenticatedUserUtilities.getCurrentUsername()
                     + " requested url that they do not have permission to " + request.getRequestURL());
         } else {
-            log.warn("Unauthenticated employee requested url that they do not have permission to " + request.getRequestURL());
+//            log.warn("Unauthenticated employee requested url that they do not have permission to " + request.getRequestURL());
+            log.warn("Unauthenticated user requested url that they do not have permission to " + request.getRequestURL());
+
         }
 
         log.warn(ex.getMessage());
@@ -59,30 +66,30 @@ public class ErrorController {
     }
 
     // Understand a little bit more about how error controller works
-    @ExceptionHandler(Exception.class)
-    public ModelAndView handleAllException(HttpServletRequest request, Exception ex) {
-        log.warn("Error page exception : " + ex.getMessage(), ex);
-
-        ModelAndView response = new ModelAndView("error/500");
-
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView handleAllException(HttpServletRequest request, Exception ex) {
+//        log.warn("Error page exception : " + ex.getMessage(), ex);
+//
+//        ModelAndView response = new ModelAndView("error/500");
+//
+//        //        if (authenticatedEmployeeUtilities.isUserInRole("ADMIN")) {
 //        if (authenticatedUserUtilities.isUserInRole("ADMIN")) {
-        if (authenticatedEmployeeUtilities.isUserInRole("ADMIN")) {
-            response.addObject("requestUrl", request.getRequestURI());
-            response.addObject("message", ex.getMessage());
-
-            String stackTrace = getHTMLStackTrace(ExceptionUtils.getStackFrames(ex));
-            response.addObject("stackTrace", stackTrace);
-
-            if (ex.getCause() != null) {
-                response.addObject("rootCause", ExceptionUtils.getRootCause(ex));
-
-                String rootTrace = getHTMLStackTrace(ExceptionUtils.getRootCauseStackTrace(ex));
-                response.addObject("rootTrace", rootTrace);
-            }
-        }
-
-        return response;
-    }
+//            response.addObject("requestUrl", request.getRequestURI());
+//            response.addObject("message", ex.getMessage());
+//
+//            String stackTrace = getHTMLStackTrace(ExceptionUtils.getStackFrames(ex));
+//            response.addObject("stackTrace", stackTrace);
+//
+//            if (ex.getCause() != null) {
+//                response.addObject("rootCause", ExceptionUtils.getRootCause(ex));
+//
+//                String rootTrace = getHTMLStackTrace(ExceptionUtils.getRootCauseStackTrace(ex));
+//                response.addObject("rootTrace", rootTrace);
+//            }
+//        }
+//
+//        return response;
+//    }
 
 
 
