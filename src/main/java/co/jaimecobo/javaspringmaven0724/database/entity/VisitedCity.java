@@ -30,8 +30,8 @@ public class VisitedCity {
     @JoinColumn(name = "city_id", referencedColumnName = "id")
     private City city;
 
-    @Column(name = "city_visited", nullable = false)
-    private boolean cityVisited;
+    @Column(name = "city_visited", columnDefinition = "BIT", nullable = false)
+    private Integer cityVisited;
 
     @Column(name = "created_at", updatable = false,  nullable = false, columnDefinition = "timestamp default current_timestamp")
     @Temporal(TemporalType.TIMESTAMP)
