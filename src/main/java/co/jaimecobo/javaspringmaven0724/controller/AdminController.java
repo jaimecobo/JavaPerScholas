@@ -1,6 +1,7 @@
 package co.jaimecobo.javaspringmaven0724.controller;
 
 import co.jaimecobo.javaspringmaven0724.database.entity.Employee;
+import co.jaimecobo.javaspringmaven0724.database.entity.User;
 import co.jaimecobo.javaspringmaven0724.security.AuthenticatedEmployeeUtilities;
 import co.jaimecobo.javaspringmaven0724.security.AuthenticatedUserUtilities;
 import lombok.extern.slf4j.Slf4j;
@@ -16,30 +17,32 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/admin")
 @PreAuthorize("hasAnyAuthority('ADMIN')")           // This annotation can be used here at the class level or directly on a method
 public class AdminController {
-//
-//    @Autowired
-//    private final AuthenticatedUserUtilities authenticatedUserUtilities;
-//
-//    public AdminController(AuthenticatedUserUtilities authenticatedUserUtilities) {
-//        this.authenticatedUserUtilities = authenticatedUserUtilities;
-//    }
 
     @Autowired
-    private AuthenticatedEmployeeUtilities authenticatedEmployeeUtilities;
+    private AuthenticatedUserUtilities authenticatedUserUtilities;
 
-    public AdminController(AuthenticatedEmployeeUtilities authenticatedEmployeeUtilities) {
-        this.authenticatedEmployeeUtilities = authenticatedEmployeeUtilities;
+    public AdminController(AuthenticatedUserUtilities authenticatedUserUtilities) {
+        this.authenticatedUserUtilities = authenticatedUserUtilities;
     }
+
+//    @Autowired
+//    private AuthenticatedEmployeeUtilities authenticatedEmployeeUtilities;
+//
+//    public AdminController(AuthenticatedEmployeeUtilities authenticatedEmployeeUtilities) {
+//        this.authenticatedEmployeeUtilities = authenticatedEmployeeUtilities;
+//    }
 
 
     //    @PreAuthorize("hasAnyAuthority('ADMIN')")     // This annotation can be used here on the method level or at the class
     @GetMapping("dashboard")
     public ModelAndView dashboard() {
         ModelAndView response = new ModelAndView("admin/dashboard");
-//        Employee employee  = authenticatedUserUtilities.getCurrentUser();
-        Employee employee  = authenticatedEmployeeUtilities.getCurrentEmployee();
-        log.info(employee.toString());
-        response.addObject("employeeKey", employee);
+        User user  = authenticatedUserUtilities.getCurrentUser();
+//        Employee employee  = authenticatedEmployeeUtilities.getCurrentEmployee();
+//        log.info(employee.toString());
+            log.info(user.toString());
+//        response.addObject("employeeKey", employee);
+        response.addObject("userKey", user);
         return response;
     }
 
