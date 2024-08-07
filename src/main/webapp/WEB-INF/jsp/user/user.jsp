@@ -34,17 +34,4 @@
 </table>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <jsp:include page="../include/footer.jsp"/>
