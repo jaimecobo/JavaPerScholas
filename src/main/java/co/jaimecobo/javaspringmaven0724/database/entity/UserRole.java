@@ -11,16 +11,16 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "employee_roles")
-public class EmployeeRole {
+@Table(name = "user_roles")
+public class UserRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "employee_id", nullable = false)
-    private Integer employeeId;
+    @Column(name = "user_id", nullable = false)
+    private Integer userId;
 
     @Column(name = "role_name", nullable = false)
     private String roleName;
