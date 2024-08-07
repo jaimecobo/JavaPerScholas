@@ -160,7 +160,8 @@
                             <input type="text"
                                    id="webId"
                                    name="cityWebUrl"
-                                   class="form-control <c:if test="${bindingResult.hasFieldErrors('web')}">is-invalid</c:if>"
+<%--                                   class="form-control <c:if test="${bindingResult.hasFieldErrors('web')}">is-invalid</c:if>"--%>
+                                   class="form-control <c:if test="${bindingResult.hasFieldErrors('cityWebUrl')}">is-invalid</c:if>"        //Changed 'web' to 'cityWebUrl' on 08/05/24 11:00AM
                                    value="${form.cityWebUrl}">
                         </div>
                     </div>
@@ -176,6 +177,8 @@
                         </div>
                     </c:if>
 
+
+                    <!-- Image file input -->
                     <div class="row align-items-center justify-content-center  pt-3">
                         <div class="col-2">
                             <label for="file" class="col-form-label">City image</label>
