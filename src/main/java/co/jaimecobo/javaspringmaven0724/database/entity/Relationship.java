@@ -29,8 +29,12 @@ public class Relationship {
     private User followedId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "relationship_type", nullable = false)
+//    @Column(name = "relationship_type", nullable = false)
+    @Column(name = "relationship_type")
     private RelationshipType relationshipType;
+
+    @Column(name = "follower_or_not", columnDefinition = "BIT", nullable = false)
+    private Integer followerOrNot;
 
     @Column(name = "created_at", updatable = false,  nullable = false, columnDefinition = "timestamp default current_timestamp")
     @Temporal(TemporalType.TIMESTAMP)
