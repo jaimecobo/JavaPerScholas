@@ -26,9 +26,9 @@
     <div class="container">
         <div class="row justify-content-center pt-5 pb-3">
             <div class="col-8 text-center">
-                <form action="/event/events">
+                <form action="/event/events-by-name">
                     <div class="mb-3">
-                        <label for="name" class="form-label"><h4>Search for event</h4></label>
+                        <label for="name" class="form-label"><h4>Search events by name</h4></label>
                         <input type="text" value="${eventKey}" class="form-control" id="name" name="name"
                                placeholder="Enter event name"/>
                     </div>
