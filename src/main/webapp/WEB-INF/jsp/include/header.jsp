@@ -50,7 +50,11 @@
                         User
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/user/users">Search user</a></li>
+                        <li><a class="dropdown-item" href="/user/all-users">All users</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/user/users-by-name">Search users by name</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/user/users-by-city">Search users by city</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/user/create-user">Create user</a></li>
                         <%--                        <li><hr class="dropdown-divider"></li>--%>
@@ -65,9 +69,9 @@
                         City
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/city/searchcity">Search city</a></li>
+                        <li><a class="dropdown-item" href="/city/all-cities">All cities</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/city/allcities">All cities</a></li>
+                        <li><a class="dropdown-item" href="/city/search-city">Search city</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/city/create-city">Create city</a></li>
 <%--                        <li><hr class="dropdown-divider"></li>--%>
@@ -83,7 +87,11 @@
                         Event
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/event/events">Search event</a></li>
+                        <li><a class="dropdown-item" href="/event/all-events">All events</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/event/events-by-name">Search event by name</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/event/events-by-city">Search event by city</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/event/create-event">Create event</a></li>
                         <%--                        <li><hr class="dropdown-divider"></li>--%>
