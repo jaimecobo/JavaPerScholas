@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -37,13 +38,34 @@ public class EventController {
     @Autowired
     private CityDAO cityDAO;
 
-    @GetMapping("/events")
-    public ModelAndView searchEvent(@RequestParam(required = false) String name) {
-        ModelAndView response = new ModelAndView("event/events");
+    @GetMapping("/all-events")
+    public ModelAndView allevents() {
+        ModelAndView response = new ModelAndView("event/allevents");
+        List<Event> eventsList = eventDAO.findAll();
+        response.addObject("eventsKey", eventsList);
+        return response;
+
+    }
+
+    @GetMapping("/events-by-name")
+    public ModelAndView searchEventByName(@RequestParam(required = false) String name) {
+        ModelAndView response = new ModelAndView("event/events-by-name");
         response.addObject("eventKey", name);
 
         List<Event> eventsList = eventDAO.findByNameIgnoreCase(name);
         response.addObject("eventsKey", eventsList);
+        return response;
+    }
+
+    @GetMapping("/events-by-city")
+    public ModelAndView searchEventByCity(@RequestParam(required = false) Integer cityId) {
+        ModelAndView response = new ModelAndView("event/events-by-city");
+        City city = cityDAO.findById(cityId);
+        response.addObject("cityKey", city);
+        List<City> listOfCities = cityDAO.findAllOrderedByCity();
+        response.addObject("citiesKey", listOfCities);
+        List<Event> listOfEventsFoundInCity = eventDAO.findByCity(city);
+        response.addObject("eventsInCityKey", listOfEventsFoundInCity);
         return response;
     }
 
