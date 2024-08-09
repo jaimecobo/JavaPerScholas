@@ -26,7 +26,7 @@
     <div class="container">
         <div class="row justify-content-center pt-5 pb-3">
             <div class="col-8 text-center">
-                <form action="/city/searchcity">
+                <form action="/city/search-city">
                     <div class="mb-3">
                         <label for="name" class="form-label"><h4>Search for city</h4></label>
                         <input type="text" value="${city}" class="form-control" id="name" name="name"
