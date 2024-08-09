@@ -40,15 +40,11 @@ public class CityController {
     @Autowired
     private UserDAO userDAO;
 
-
     @Autowired
     private AuthenticatedUserUtilities authenticatedUserUtilities;
 
-//    @Autowired
-//    private EmployeeDAO employeeDAO;
 
-
-    @GetMapping("/allcities")
+    @GetMapping("/all-cities")
     public ModelAndView allcities() {
         ModelAndView response = new ModelAndView("city/allcities");
 //        response.addObject("city", name);
@@ -57,7 +53,7 @@ public class CityController {
         return response;
     }
 
-    @GetMapping("/searchcity")
+    @GetMapping("/search-city")
     public ModelAndView searchCity(@RequestParam(required = false) String name) {
         ModelAndView response = new ModelAndView("city/searchcity");
         response.addObject("city", name);
@@ -78,11 +74,8 @@ public class CityController {
         response.addObject("userKey", user);
         VisitedCity visitedCity = visitedCityDAO.findByUserIdAndCityId(authenticatedUserUtilities.getCurrentUser().getId(), id);
         response.addObject("visitedCityKey", visitedCity);
-
-//        Employee user = employeeDAO.findById(city.getLastEditorUser());
-//        response.addObject("userKey", user);
-
         return response;
+
     }
 
     @GetMapping("/create-city")
