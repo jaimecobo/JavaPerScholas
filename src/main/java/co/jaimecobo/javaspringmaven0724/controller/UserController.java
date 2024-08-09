@@ -52,14 +52,30 @@ public class UserController {
     private LikeDAO likeDAO;
 
 
-    @GetMapping("/users")
-    public ModelAndView searchUser(@RequestParam(required = false) String firstName) {
-        ModelAndView response = new ModelAndView("user/users");
-        response.addObject("firstName", firstName);
+    @GetMapping("/all-users")
+    public ModelAndView allusers() {
+        ModelAndView response = new ModelAndView("user/allusers");
+        List<User> usersList = userDAO.findAll();
+        response.addObject("usersKey", usersList);
+        return response;
 
-//        User user = userDAO.findByUsernameIgnoreCase(username);
-//        response.addObject("userKey", user);
+    }
+
+    @GetMapping("/users-by-name")
+    public ModelAndView searchUserByFirstName(@RequestParam(required = false) String firstName) {
+        ModelAndView response = new ModelAndView("user/users-by-name");
+        response.addObject("firstName", firstName);
         List<User> usersList = userDAO.findByFirstNameIgnoreCase(firstName);
+        response.addObject("usersKey", usersList);
+        return response;
+
+    }
+
+    @GetMapping("/users-by-city")
+    public ModelAndView searchUserByCity(@RequestParam(required = false) String city) {
+        ModelAndView response = new ModelAndView("user/users-by-city");
+        response.addObject("cityNameKey", city);
+        List<User> usersList = userDAO.findByCityIgnoreCase(city);
         response.addObject("usersKey", usersList);
         return response;
 
@@ -72,10 +88,15 @@ public class UserController {
 //        log.debug("The user has selected an user with id = " + id);
         User user = userDAO.findById(id);
         response.addObject("userKey", user);
+
+//        Relationship relationship = relationshipDAO.findByFollowerIdAndFollowedId(authenticatedUserUtilities.getCurrentUser(), user);
+//        response.addObject("relationshipKey", relationship);
+
         List<Map<String, Object>> ListOfFollowers = relationshipDAO.getUserFollowers(id);
         response.addObject("ListOfFollowersKey", ListOfFollowers);
         List<Map<String, Object>> ListOfWhoYouFollow = relationshipDAO.getWhoUserFollows(id);
         response.addObject("ListOfWhoYouFollowKey", ListOfWhoYouFollow);
+
         List<Event> organizedEventsList = eventDAO.findByOrganizerId(id);
         response.addObject("organizedEventsKey", organizedEventsList);
         List<Map<String, Object>> listOfVisitedCities = visitedCityDAO.findByUserId(id);
