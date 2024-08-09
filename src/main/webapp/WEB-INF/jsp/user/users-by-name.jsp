@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row pt-5 pb-5">
             <h1 class="text-center">
-                Users
+                Users by first name
             </h1>
         </div>
     </div>
@@ -23,9 +23,9 @@
     <div class="container">
         <div class="row justify-content-center pt-5 pb-3">
             <div class="col-8 text-center">
-                <form action="/user/users">
+                <form action="/user/users-by-name">
                     <div class="mb-3">
-                        <label for="firstName" class="form-label"><h4>User Search</h4></label>
+                        <label for="firstName" class="form-label"><h4>Search users by first name</h4></label>
                         <input type="text" value="${firstName}" class="form-control" id="firstName" name="firstName"
                                placeholder="Enter user first name"/>
                     </div>
