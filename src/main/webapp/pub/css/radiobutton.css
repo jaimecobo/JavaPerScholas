@@ -38,14 +38,14 @@
 }
 /*Text on the right [Follow]*/
 .rating-label-follow {
-  left: -58px;
-  /*left: -46px;*/
+  left: -58px;    /*Original value*/
+  left: -46px;
   text-align: right;
 }
 /*Text on the left [Unfollow]*/
 .rating-label-unfollow {
-  /*left: -58px;*/
-  left: 58px;
+  /*left: -58px;    !*Original value*!*/
+  left: 18px;
   text-align: left;
   color: #222;
 }
