@@ -5,12 +5,38 @@
   Time: 9:33 PM
   To change this template use File | Settings | File Templates.
 --%>
+<link rel="stylesheet" href="../../../pub/css/radiobutton.css">
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="../include/header.jsp"/>
 
 <section style="background-color:lightblue">
     <h1 class="page-title text-center">User details</h1>
+</section>
+
+<section>
+    <div class="normal-container">
+        <div class="smile-rating-container">
+            <div class="smile-rating-toggle-container">
+                <form class="submit-rating" id="formFollowOrNot">
+                    <input class="form-check-input" type="radio" id="unfollow" name="unfollow"
+                           <c:if test="${relationshipKey.followerOrNot==0}">checked</c:if>
+                    />
+                    <input class="form-check-input" type="radio" id="follow" name="follow"
+                           <c:if test="${relationshipKey.followerOrNot==1}">checked</c:if>
+                    />
+                    <label for="unfollow" class="rating-label rating-label-unfollow">Unfollow</label>
+                    <div class="smile-rating-toggle"></div>
+                    <div class="rating-eye rating-eye-left"></div>
+                    <div class="rating-eye rating-eye-right"></div>
+                    <div class="mouth rating-eye-bad-mouth"></div>
+                    <div class="toggle-rating-pill"></div>
+                    <label for="follow" class="rating-label rating-label-follow">Follow</label>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 
 <table class="table table-striped">
@@ -29,7 +55,7 @@
     <tr><td><b>Country</b></td><td>${userKey.country}</td></tr>
     <tr><td><b>Password</b></td><td>${userKey.password}</td></tr>
     <tr><td><b>Creation date</b></td><td>${userKey.createdAt}</td></tr>
-    <tr><td><b>Profile image</b></td><td><img src="${userKey.userImageUrl}"/></td></tr>
+    <tr><td><b>Profile image</b></td><td><img id="userImage" src="${userKey.userImageUrl}"/></td></tr>
     <tr><td></td><td><a href="${pageContext.request.contextPath}/user/edit-user?userId=${userKey.id}">edit by @RequestParam</a></td></tr>
 </table>
 
@@ -37,7 +63,7 @@
     <div class="container">
         <div class="row pt-5">
             <div class="col-12">
-                <%--                <h2 class="text-center">Order details</h2>--%>
+                <h2 class="text-center">Visited cities found (${listOfVisitedCitiesKey.size()})</h2>
             </div>
         </div>
         <div class="row pt-3">
@@ -66,4 +92,110 @@
 </section>
 
 
+<section>
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-12">
+                <h2 class="text-center">Followers found (${ListOfFollowersKey.size()})</h2>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <tr class="text-center" style="background-color:lightcyan">
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Country</th>
+<%--                        <th>Edit</th>--%>
+                    </tr>
+                    <c:forEach items="${ListOfFollowersKey}" var="follower">
+                        <tr class="text-center">
+                            <td>${follower.firstName}</td>
+                            <td>${follower.lastName}</td>
+                            <td><a href="/user/user/${follower.id}">${follower.username}</a></td>
+                            <td>${follower.email}</td>
+                            <td>${follower.city}</td>
+                            <td>${follower.state}</td>
+                            <td>${follower.country}</td>
+<%--                            <td><a href="/user/edit-user?userId=${follower.id}">edit</a></td>--%>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-12">
+                <h2 class="text-center">You follow (${ListOfWhoYouFollowKey.size()}) users</h2>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <tr class="text-center" style="background-color:lightcyan">
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Country</th>
+                        <%--                        <th>Edit</th>--%>
+                    </tr>
+                    <c:forEach items="${ListOfWhoYouFollowKey}" var="following">
+                        <tr class="text-center">
+                            <td>${following.firstName}</td>
+                            <td>${following.lastName}</td>
+                            <td><a href="/user/user/${following.id}">${following.username}</a></td>
+                            <td>${following.email}</td>
+                            <td>${following.city}</td>
+                            <td>${following.state}</td>
+                            <td>${following.country}</td>
+                                <%--                            <td><a href="/user/edit-user?userId=${following.id}">edit</a></td>--%>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <jsp:include page="../include/footer.jsp"/>
+
+<%--<script src="../../../static/js/radiobuttons.js"></script>--%>
+
+<script>
+    // Function to handle radio button selection
+    function checkRadioButton() {
+        // Get references to the radio buttons
+        var unfollow = document.getElementById('unfollow');
+        var follow = document.getElementById('follow');
+
+        // Determine which radio button is selected
+        if (unfollow.checked) {
+            fetch(`/relationship/followedOrNot?status=`+0+`&userId=${userKey.id}`)
+                .then(data => console.log('success unfollowing'))
+                .catch(error => console.error('Error:', error));
+        } else if (follow.checked) {
+            fetch(`/relationship/followedOrNot?status=`+1+`&userId=${userKey.id}`)
+                .then(data => console.log('success following'))
+                .catch(error => console.error('Error:', error));
+        }
+    }
+
+    // Event listeners to both radio buttons
+    document.getElementById('unfollow').addEventListener('click', checkRadioButton);
+    document.getElementById('follow').addEventListener('click', checkRadioButton);
+
+</script>
+
