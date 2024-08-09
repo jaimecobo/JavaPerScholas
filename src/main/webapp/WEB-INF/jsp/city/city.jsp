@@ -5,6 +5,8 @@
   Time: 5:48 PM
   To change this template use File | Settings | File Templates.
 --%>
+<link rel="stylesheet" href="../../../pub/css/global.css">
+
 
 <style>
     .center-container {
@@ -76,10 +78,10 @@
     <tr><td><b>Slogan</b></td><td>${cityKey.slogan}</td></tr>
     <tr><td><b>Description</b></td><td>${cityKey.description}</td></tr>
     <tr><td><b>City iconic image</b></td><td>${cityKey.cityImageUrl}</td></tr>
-    <tr><td><b>City website URL</b></td><td>${cityKey.cityWebUrl}</td></tr>
+    <tr><td><b>City website URL</b></td><td><a href="${cityKey.cityWebUrl}" target="_blank">${cityKey.cityWebUrl}</a></td></tr>
     <tr><td><b>Creation date</b></td><td>${cityKey.createdAt}</td></tr>
     <tr><td><b>Last edition date</b></td><td>${cityKey.editedDate}</td></tr>
-    <tr><td><b>City iconic image</b></td><td><img src="${cityKey.cityImageUrl}"/></td></tr>
+    <tr><td><b>City iconic image</b></td><td><img id="cityImage" src="${cityKey.cityImageUrl}"/></td></tr>
     <tr><td><b>Last editor</b></td><td>${userKey.email}</td></tr>
     <tr><td></td><td><a href="${pageContext.request.contextPath}/city/edit-city?cityId=${cityKey.id}">edit by @RequestParam</a></td></tr>
 </table>
@@ -88,6 +90,8 @@
 
 
 <%--<script src="../../../resources/static/script.js"></script>--%>
+<%--<script src="../../../static/js/checkbox.js"></script>--%>
+
 <script>
 
     function updateStatus() {
