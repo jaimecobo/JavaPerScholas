@@ -1,9 +1,12 @@
 package co.jaimecobo.javaspringmaven0724.database.dao;
 
+import co.jaimecobo.javaspringmaven0724.database.entity.City;
 import co.jaimecobo.javaspringmaven0724.database.entity.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Map;
 
 public interface EventDAO extends JpaRepository<Event, Long> {
     Event findById(Integer id);
@@ -12,6 +15,7 @@ public interface EventDAO extends JpaRepository<Event, Long> {
 
     Event findByNameAndCityIdAndStartingDateIgnoreCase(String name, Integer cityId, String startingDate);
     Event findByNameAndStartingDateIgnoreCase(String name, String startingDate);
-//    Event findByNameAndCityIdIgnoreCase(String name, Integer cityId);
+
+    List<Event> findByCity(City city);
 
 }
