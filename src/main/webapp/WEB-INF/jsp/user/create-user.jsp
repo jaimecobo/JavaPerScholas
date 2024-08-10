@@ -10,7 +10,7 @@
 <jsp:include page="../include/header.jsp"/>
 
 <!-- a page header -->
-<section style="background-color:lightseagreen">
+<section style="background-color:lightblue">
     <div class="container">
         <div class="row pt-5 pb-5">
             <c:if test="${empty form.userId}">
