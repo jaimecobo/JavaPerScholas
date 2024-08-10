@@ -20,7 +20,7 @@
         <div class="smile-rating-container">
             <div class="smile-rating-toggle-container">
                 <form class="submit-rating" id="formFollowOrNot">
-                    <input class="form-check-input" type="radio" id="unfollow" name="unfollow"
+                    <input class="form-check-input" type="radio" id="unfollow" name="follow"
                            <c:if test="${relationshipKey.followerOrNot==0}">checked</c:if>
                     />
                     <input class="form-check-input" type="radio" id="follow" name="follow"
@@ -55,11 +55,11 @@
     <tr><td><b>Country</b></td><td>${userKey.country}</td></tr>
     <tr><td><b>Password</b></td><td>${userKey.password}</td></tr>
     <tr><td><b>Creation date</b></td><td>${userKey.createdAt}</td></tr>
-    <tr><td><b>Profile image</b></td><td><img id="userImage" src="${userKey.userImageUrl}"/></td></tr>
+    <tr><td><b>Profile image</b></td><td><img id="userImage" src="${userKey.userImageUrl}" alt=""/></td></tr>
     <tr><td></td><td><a href="${pageContext.request.contextPath}/user/edit-user?userId=${userKey.id}">edit by @RequestParam</a></td></tr>
 </table>
 
-<section>
+<section style="background-color:lightblue">
     <div class="container">
         <div class="row pt-5">
             <div class="col-12">
@@ -92,7 +92,7 @@
 </section>
 
 
-<section>
+<section style="background-color:lightblue">
     <div class="container">
         <div class="row pt-5">
             <div class="col-12">
@@ -131,7 +131,7 @@
 </section>
 
 
-<section>
+<section style="background-color:lightblue">
     <div class="container">
         <div class="row pt-5">
             <div class="col-12">
@@ -175,27 +175,22 @@
 <%--<script src="../../../static/js/radiobuttons.js"></script>--%>
 
 <script>
-    // Function to handle radio button selection
-    function checkRadioButton() {
-        // Get references to the radio buttons
-        var unfollow = document.getElementById('unfollow');
-        var follow = document.getElementById('follow');
 
-        // Determine which radio button is selected
-        if (unfollow.checked) {
-            fetch(`/relationship/followedOrNot?status=`+0+`&userId=${userKey.id}`)
-                .then(data => console.log('success unfollowing'))
-                .catch(error => console.error('Error:', error));
-        } else if (follow.checked) {
+    document.getElementById('unfollow').addEventListener('click', function(){
+            if (this.checked) {
+                fetch(`/relationship/followedOrNot?status=`+0+`&userId=${userKey.id}`)
+                    .then(data => console.log('success unfollowing'))
+                    .catch(error => console.error('Error:', error));
+            }
+        });
+
+    document.getElementById('follow').addEventListener('click', function(){
+        if (this.checked) {
             fetch(`/relationship/followedOrNot?status=`+1+`&userId=${userKey.id}`)
-                .then(data => console.log('success following'))
-                .catch(error => console.error('Error:', error));
+            .then(data => console.log('success following'))
+            .catch(error => console.error('Error:', error));
         }
-    }
-
-    // Event listeners to both radio buttons
-    document.getElementById('unfollow').addEventListener('click', checkRadioButton);
-    document.getElementById('follow').addEventListener('click', checkRadioButton);
+    });
 
 </script>
 
