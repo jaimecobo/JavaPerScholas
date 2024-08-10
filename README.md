@@ -1,5 +1,5 @@
 # Java Spring Maven Project
-============================================================================================
+----------------------------
 
 Java project using Spring and Maven to put into practice all the content material 
 learned throughout the Per Scholas' Software Engineering - Full Stack Java Development 
