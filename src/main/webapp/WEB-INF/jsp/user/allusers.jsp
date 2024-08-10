@@ -10,7 +10,7 @@
 
 <jsp:include page="../include/header.jsp" />
 <!-- a page title -->
-<section style="background-color:lightseagreen">
+<section style="background-color:lightblue">
     <div class="container">
         <div class="row pt-5 pb-5">
             <h1 class="text-center">
@@ -32,7 +32,7 @@
         <div class="row pt-3">
             <div class="col-12">
                 <table class="table table-striped">
-                    <tr class="text-center" style="background-color:lightseagreen">
+                    <tr class="text-center" style="background-color:lightblue">
                         <th>ID</th>
                         <th>Username</th>
                         <th>Email</th>
