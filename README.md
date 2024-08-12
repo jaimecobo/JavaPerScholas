@@ -1,1 +1,1 @@
-# JavaSpringMaven0724
+# Java + Spring + Maven
